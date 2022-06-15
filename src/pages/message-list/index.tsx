@@ -16,7 +16,7 @@ export const MessageListPage = observer(() => {
   const messagesStore = useMailMessagesStore();
   return (
     <Container maxWidth="sm">
-      <Box sx={{ my: 6 }}>
+      <Box>
         <MailMessageList
           header={<MailMessageListHeader />}
           pending={messagesStore.state === MailMessageStoreState.PENDING}

@@ -1,17 +1,21 @@
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import React, { useCallback } from 'react';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 
 interface MailCopyButtonProps {
   email?: string
-  pending?: boolean
+  disabled?: boolean
 }
 
-export function MailCopyButton({ email = '', pending = false }: MailCopyButtonProps) {
+export function MailCopy({ email = '', disabled = false }: MailCopyButtonProps) {
   const copy = useCallback(() => navigator.clipboard.writeText(email), [email]);
   return (
-    <IconButton onClick={copy} aria-label="delete" size="large" disabled={pending}>
-      <ContentCopy fontSize="inherit" />
-    </IconButton>
+    <Tooltip title="Copy mail address">
+      <span>
+        <IconButton onClick={copy} aria-label="delete" size="large" disabled={disabled}>
+          <ContentCopy fontSize="inherit" />
+        </IconButton>
+      </span>
+    </Tooltip>
   );
 }

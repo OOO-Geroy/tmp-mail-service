@@ -2,13 +2,16 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Grid, TextField } from '@mui/material';
-import { MailCopyButton } from 'features/mail-copy';
-import { MailRenewButton } from 'features/mail-renew';
+import {
+  Grid, Stack, TextField,
+} from '@mui/material';
+import { MailCopy } from 'features/mail-copy';
+import { MailRenew } from 'features/mail-renew';
 import { observer } from 'mobx-react';
 import { MailboxStoreState, useMailboxStore } from 'entities/mailbox';
 import { Outlet } from 'react-router-dom';
 import { LifeTimer } from 'features/life-timer';
+import { UpdateMessageList } from 'features/update-message-list';
 
 export const HomePage = observer(() => {
   const mailboxStore = useMailboxStore();
@@ -16,13 +19,17 @@ export const HomePage = observer(() => {
   return (
     <>
       <Container maxWidth="sm">
-        <Box sx={{ mb: 6 }}>
+        <Box sx={{ mb: 5 }}>
           <Typography variant="h4" component="h1" textAlign={['center']} gutterBottom>
             Temporary Mail Service
           </Typography>
         </Box>
-        <Box sx={{ mb: 6 }}>
-          <Grid container spacing={2}>
+        <Box sx={{ mb: 5 }}>
+          <Grid
+            container
+            gridTemplateColumns="1fr auto"
+            spacing={1}
+          >
             <Grid item xs>
               <Box>
                 <TextField
@@ -35,18 +42,20 @@ export const HomePage = observer(() => {
                   <LifeTimer exp={mailboxStore.mailbox?.exp} />
                 </Box>
               </Box>
-
             </Grid>
             <Grid item>
-              <MailCopyButton
+              <MailCopy
                 email={mailboxStore.mailbox?.email}
-                pending={mailboxStore.state === MailboxStoreState.PENDING}
+                disabled={mailboxStore.state === MailboxStoreState.PENDING}
               />
             </Grid>
-            <Grid item>
-              <MailRenewButton />
-            </Grid>
           </Grid>
+        </Box>
+        <Box sx={{ mb: 1 }}>
+          <Stack justifyContent="end" spacing={2} direction="row">
+            <MailRenew />
+            <UpdateMessageList />
+          </Stack>
         </Box>
       </Container>
       <Outlet />
