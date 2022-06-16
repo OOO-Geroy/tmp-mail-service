@@ -3,15 +3,13 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {
-  Grid, Stack, TextField,
+  Grid, TextField,
 } from '@mui/material';
 import { MailCopy } from 'features/mail-copy';
-import { MailRenew } from 'features/mail-renew';
 import { observer } from 'mobx-react';
 import { MailboxStoreState, useMailboxStore } from 'entities/mailbox';
 import { Outlet } from 'react-router-dom';
 import { LifeTimer } from 'features/life-timer';
-import { UpdateMessageList } from 'features/update-message-list';
 
 export const HomePage = observer(() => {
   const mailboxStore = useMailboxStore();
@@ -50,12 +48,6 @@ export const HomePage = observer(() => {
               />
             </Grid>
           </Grid>
-        </Box>
-        <Box sx={{ mb: 1 }}>
-          <Stack justifyContent="end" spacing={2} direction="row">
-            <MailRenew />
-            <UpdateMessageList />
-          </Stack>
         </Box>
       </Container>
       <Outlet />

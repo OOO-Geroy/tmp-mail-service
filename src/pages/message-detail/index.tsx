@@ -5,8 +5,9 @@ import { observer } from 'mobx-react';
 import { Link, useParams } from 'react-router-dom';
 import { MailMessageCard, useMailMessagesStore } from 'entities/mail-message';
 import { useLayoutEffect } from 'react';
-import { Container, IconButton } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
+import { MailMessageCardHeader } from 'entities/mail-message/ui/card-header';
 
 export const MessageDetailPage = observer(() => {
   const { seq = 1 } = useParams();
@@ -19,13 +20,39 @@ export const MessageDetailPage = observer(() => {
 
   return (
     <Container maxWidth="md">
-      <Link to="/">
-        <IconButton color="primary" aria-label="back" component="span">
-          <ArrowBack />
-        </IconButton>
-      </Link>
-      <Box sx={{ my: 3 }}>
-        {message ? <MailMessageCard message={message} /> : <CircularProgress />}
+      <Box sx={{ mb: 1 }}>
+        <Button
+          component={Link}
+          to="/"
+          color="primary"
+          aria-label="back"
+          startIcon={<ArrowBack />}
+        >
+          Back to messages
+        </Button>
+      </Box>
+      <Box justifyContent="center">
+        {message
+          ? (
+            <MailMessageCard
+              header={(
+                <MailMessageCardHeader
+                  from={message.from}
+                  date={message.date}
+                  subject={message.subject}
+                />
+)}
+              message={message}
+            />
+          )
+          : (
+            <Box
+              display="flex"
+              justifyContent="center"
+            >
+              <CircularProgress />
+            </Box>
+          )}
       </Box>
 
     </Container>

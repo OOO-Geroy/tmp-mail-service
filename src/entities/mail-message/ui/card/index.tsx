@@ -1,25 +1,26 @@
 /* eslint-disable react/no-danger */
-import { Card, CardContent } from '@mui/material';
-import React, { useMemo } from 'react';
+import { CardContent, Divider, Paper } from '@mui/material';
+import React, { ReactNode, useMemo } from 'react';
 import { MailMessage } from 'shared';
 import DOMPurify from 'dompurify';
-import { MailMessageCardHeader } from '../card-header';
 
 interface MailMessageCardProps {
-  message: MailMessage
+  message: MailMessage,
+  header?: ReactNode
 }
 
-export function MailMessageCard({ message }: MailMessageCardProps) {
+export function MailMessageCard({ message, header }: MailMessageCardProps) {
   const cleanHtml = useMemo(() => DOMPurify.sanitize(message.html || '', {
     USE_PROFILES: { html: true },
   }), [message, message.html]);
 
   return (
-    <Card>
-      <MailMessageCardHeader from={message.from} />
+    <Paper elevation={2}>
+      {header}
+      <Divider />
       <CardContent>
         <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
       </CardContent>
-    </Card>
+    </Paper>
   );
 }

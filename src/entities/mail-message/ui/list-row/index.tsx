@@ -43,7 +43,7 @@ export function MailMessageListRow({ seq, sender, subject = '' }: MailMessageRow
           },
         }}
         >
-          <Typography variant="body2" component="p" noWrap gutterBottom>
+          <Typography variant="body2" component="p" noWrap sx={{ mb: 0.25 }}>
             {sender ? sender.name : ''}
           </Typography>
           <Typography variant="caption" component="p" noWrap sx={{ color: 'grey.700' }}>

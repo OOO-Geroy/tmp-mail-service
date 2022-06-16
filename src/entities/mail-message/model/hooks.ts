@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { mailMessagesStore } from './store';
 
 export const useMailMessagesStore = () => {
-  const [store] = useState(() => mailMessagesStore);
+  const store = useMemo(() => mailMessagesStore, [mailMessagesStore]);
   return store;
 };

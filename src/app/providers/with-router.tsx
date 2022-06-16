@@ -1,5 +1,4 @@
-import { CircularProgress } from '@mui/material';
-import React, { ReactNode, Suspense } from 'react';
+import React, { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 interface WithRouterProps {
@@ -9,9 +8,7 @@ interface WithRouterProps {
 export function WithRouter({ children }: WithRouterProps) {
   return (
     <BrowserRouter>
-      <Suspense fallback={<CircularProgress />}>
-        {children}
-      </Suspense>
+      {children}
     </BrowserRouter>
   );
 }

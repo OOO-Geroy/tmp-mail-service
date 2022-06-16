@@ -57,6 +57,10 @@ export class MailboxStore {
       });
     }
   }
+
+  clear() {
+    this.mailbox = null;
+  }
 }
 
 export const mailboxStore = new MailboxStore();

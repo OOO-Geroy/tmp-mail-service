@@ -1,7 +1,7 @@
 import {
   API_BASE, $fetch, AuthData, AuthDataWithToken, AuthException,
 } from 'shared';
-import { cookieStorage } from '../browser';
+import { cookieStorage } from '../../lib/browser';
 
 async function createMailbox(): Promise<AuthData> {
   cookieStorage.removeItem('authorization');

@@ -1,5 +1,6 @@
-import { ErrorResponse, ServerException } from 'shared';
-import { AuthException, BaseException, cookieStorage } from '..';
+import {
+  cookieStorage, ErrorResponse, ServerException, AuthException, BaseException,
+} from 'shared';
 
 export async function $fetch<T>(...[input, init]: Parameters<typeof fetch>) {
   const res = await fetch(input, {

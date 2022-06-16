@@ -9,13 +9,21 @@ import {
   useMailMessagesStore,
 } from 'entities/mail-message';
 import {
-  CircularProgress, Container, Divider, Grid, Typography,
+  CircularProgress, Container, Divider, Grid, Stack, Typography,
 } from '@mui/material';
+import { MailRenew } from 'features/mail-renew';
+import { UpdateMessageList } from 'features/update-message-list';
 
 export const MessageListPage = observer(() => {
   const messagesStore = useMailMessagesStore();
   return (
     <Container maxWidth="sm">
+      <Box sx={{ mb: 1 }}>
+        <Stack justifyContent="end" spacing={2} direction="row">
+          <MailRenew />
+          <UpdateMessageList />
+        </Stack>
+      </Box>
       <Box>
         <MailMessageList
           header={<MailMessageListHeader />}

@@ -1,11 +1,14 @@
-import { mailMessagesStore, MailMessageStoreState } from 'entities/mail-message';
-import { mailboxStore } from 'entities/mailbox';
+import { MailMessageStoreState, useMailMessagesStore } from 'entities/mail-message';
+import { useMailboxStore } from 'entities/mailbox';
 import { observe } from 'mobx';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { AuthException } from 'shared';
 
 export function useAuth() {
-  useLayoutEffect(() => {
+  const mailboxStore = useMailboxStore();
+  const mailMessagesStore = useMailMessagesStore();
+
+  useEffect(() => {
     let intervalId: any = null;
 
     const disposerAuth = observe(mailboxStore, 'mailbox', (change) => {
@@ -30,7 +33,7 @@ export function useAuth() {
       if (change.newValue !== MailMessageStoreState.ERROR
         && !(mailMessagesStore.error instanceof AuthException)) return null;
 
-      mailboxStore.auth();
+      // mailboxStore.auth();
       mailMessagesStore.clear();
       return null;
     });
