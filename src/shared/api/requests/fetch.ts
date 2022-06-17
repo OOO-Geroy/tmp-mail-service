@@ -13,7 +13,10 @@ export async function $fetch<T>(...[input, init]: Parameters<typeof fetch>) {
 
   if (res.status >= 400) {
     const data: ErrorResponse = await res.json();
-    if (data.statusCode === 401) throw new AuthException(data.message);
+    if (data.statusCode === 401) {
+      cookieStorage.removeItem('authorization');
+      throw new AuthException(data.message);
+    }
     if (data.statusCode === 500) throw new ServerException(data.message);
     throw new BaseException(data.message, data.statusCode);
   }

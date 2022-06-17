@@ -21,6 +21,7 @@ export class MailboxStore {
   }
 
   async auth() {
+    this.clear();
     this.state = MailboxStoreState.PENDING;
     try {
       const data = await loginMailbox();
@@ -32,14 +33,14 @@ export class MailboxStore {
       });
     } catch (error) {
       runInAction(() => {
-        if (error instanceof AuthException) { this.mailbox = null; }
-        this.state = MailboxStoreState.ERROR;
-        this.error = <Error>error;
+        if (error instanceof AuthException) this.clear();
+        this.errorHandler(error);
       });
     }
   }
 
   async renew() {
+    this.clear();
     this.state = MailboxStoreState.PENDING;
     try {
       const data = await renewMailbox();
@@ -51,11 +52,15 @@ export class MailboxStore {
       });
     } catch (error) {
       runInAction(() => {
-        this.mailbox = null;
-        this.state = MailboxStoreState.ERROR;
-        this.error = <Error>error;
+        this.clear();
+        this.errorHandler(error);
       });
     }
+  }
+
+  errorHandler(error: unknown) {
+    this.state = MailboxStoreState.ERROR;
+    this.error = <Error>error;
   }
 
   clear() {

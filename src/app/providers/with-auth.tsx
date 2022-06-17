@@ -7,6 +7,7 @@ interface WithThemeProps {
 
 export const WithAuth = React.memo(({ children }: WithThemeProps) => {
   useAuth();
+
   return (
     <div>
       {children}

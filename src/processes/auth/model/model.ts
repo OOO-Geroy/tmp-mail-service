@@ -1,4 +1,4 @@
-import { MailMessageStoreState, useMailMessagesStore } from 'entities/mail-message';
+import { useMailMessagesStore } from 'entities/mail-message';
 import { useMailboxStore } from 'entities/mailbox';
 import { observe } from 'mobx';
 import { useEffect } from 'react';
@@ -15,7 +15,7 @@ export function useAuth() {
       if (!change.newValue) {
         mailMessagesStore.clear();
         clearInterval(intervalId);
-        return null;
+        return change;
       }
 
       mailMessagesStore.clear();
@@ -26,16 +26,16 @@ export function useAuth() {
         mailMessagesStore.load();
       }, 10000);
 
-      return null;
+      return change;
     });
 
-    const disposerReauth = observe(mailMessagesStore, 'state', (change) => {
-      if (change.newValue !== MailMessageStoreState.ERROR
-        && !(mailMessagesStore.error instanceof AuthException)) return null;
+    const disposerReauth = observe(mailMessagesStore, 'error', (change) => {
+      if (!(mailMessagesStore.error instanceof AuthException)) return null;
 
-      // mailboxStore.auth();
+      clearInterval(intervalId);
+      mailboxStore.auth();
       mailMessagesStore.clear();
-      return null;
+      return change;
     });
 
     mailboxStore.auth();

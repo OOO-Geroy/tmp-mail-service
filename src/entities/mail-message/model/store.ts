@@ -33,8 +33,7 @@ export class MailMessagesStore {
       });
     } catch (error) {
       runInAction(() => {
-        this.state = MailMessageStoreState.ERROR;
-        this.error = <Error>error;
+        this.errorHandler(error);
       });
     }
   }
@@ -55,11 +54,15 @@ export class MailMessagesStore {
       });
     } catch (error) {
       runInAction(() => {
-        if (error instanceof AuthException) this.clear();
-        this.state = MailMessageStoreState.ERROR;
-        this.error = <Error>error;
+        this.errorHandler(error);
       });
     }
+  }
+
+  errorHandler(error: unknown) {
+    if (error instanceof AuthException) this.clear();
+    this.state = MailMessageStoreState.ERROR;
+    this.error = <Error>error;
   }
 
   clear() {

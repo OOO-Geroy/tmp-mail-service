@@ -1,3 +1,4 @@
+import { RequireAuth } from 'features/auth';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HomePage } from './home';
@@ -9,7 +10,14 @@ export function Routing() {
     <Routes>
       <Route path="/" element={<HomePage />}>
         <Route index element={<MessageListPage />} />
-        <Route path=":seq" element={<MessageDetailPage />} />
+        <Route
+          path=":seq"
+          element={(
+            <RequireAuth redirectTo="/">
+              <MessageDetailPage />
+            </RequireAuth>
+        )}
+        />
       </Route>
     </Routes>
   );
