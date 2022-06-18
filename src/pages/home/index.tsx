@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {
   Grid, TextField,
@@ -17,11 +16,6 @@ export const HomePage = observer(() => {
   return (
     <>
       <Container maxWidth="sm">
-        <Box sx={{ mb: 5 }}>
-          <Typography variant="h4" component="h1" textAlign={['center']} gutterBottom>
-            Temporary Mail Service
-          </Typography>
-        </Box>
         <Box sx={{ mb: 5 }}>
           <Grid
             container

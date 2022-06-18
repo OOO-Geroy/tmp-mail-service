@@ -2,6 +2,7 @@ import {
   Box, Divider, Grid, Typography, useTheme,
 } from '@mui/material';
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { InitialsAvatar, MailMessage } from 'shared';
 
 interface MailMessageCardHeaderProps {
@@ -12,10 +13,12 @@ interface MailMessageCardHeaderProps {
 
 export function MailMessageCardHeader({ from, date, subject }: MailMessageCardHeaderProps) {
   const theme = useTheme();
-  const formattedDate = useMemo(() => new Intl.DateTimeFormat('en-GB', {
+  const { t, i18n } = useTranslation();
+  const formattedDate = useMemo(() => new Intl.DateTimeFormat(i18n.language, {
     dateStyle: 'medium',
     timeStyle: 'long',
   }).format(new Date(date || new Date())), [date]);
+
   return (
     <Box sx={{
       p: 2,
@@ -71,8 +74,9 @@ export function MailMessageCardHeader({ from, date, subject }: MailMessageCardHe
       }}
       />
       <Box display="flex" sx={{ columnGap: 1.5 }}>
-        <Typography variant="subtitle2" component="p">
-          Subject:
+        <Typography variant="subtitle2" component="p" textTransform="capitalize">
+          {t('subject')}
+          :
         </Typography>
         <Typography variant="body2" component="p">
           {subject}

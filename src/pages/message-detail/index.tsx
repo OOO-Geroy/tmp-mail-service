@@ -8,8 +8,10 @@ import { useLayoutEffect } from 'react';
 import { Button, Container } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { MailMessageCardHeader } from 'entities/mail-message/ui/card-header';
+import { useTranslation } from 'react-i18next';
 
 export const MessageDetailPage = observer(() => {
+  const { t } = useTranslation();
   const { seq = 1 } = useParams();
   const mailMessagesStore = useMailMessagesStore();
   const message = mailMessagesStore.messages.find((msg) => msg.seq === +seq);
@@ -28,7 +30,7 @@ export const MessageDetailPage = observer(() => {
           aria-label="back"
           startIcon={<ArrowBack />}
         >
-          Back to messages
+          {t('Back to messages')}
         </Button>
       </Box>
       <Box justifyContent="center">

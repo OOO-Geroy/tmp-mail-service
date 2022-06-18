@@ -3,9 +3,12 @@ import {
   Grid, Typography, useTheme,
 } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export function MailMessageListHeader() {
   const theme = useTheme();
+  const { t } = useTranslation();
+
   return (
     <Grid
       container
@@ -31,8 +34,8 @@ export function MailMessageListHeader() {
         },
       }}
       >
-        <Typography variant="subtitle2">
-          MESSAGES
+        <Typography variant="subtitle2" textTransform="uppercase">
+          {t('messages')}
         </Typography>
       </Box>
       <Box sx={{
@@ -43,8 +46,8 @@ export function MailMessageListHeader() {
         },
       }}
       >
-        <Typography variant="subtitle2">
-          SENDER
+        <Typography variant="subtitle2" textTransform="uppercase">
+          {t('sender')}
         </Typography>
       </Box>
       <Box sx={{
@@ -55,8 +58,8 @@ export function MailMessageListHeader() {
         },
       }}
       >
-        <Typography variant="subtitle2">
-          SUBJECT
+        <Typography variant="subtitle2" textTransform="uppercase">
+          {t('subject')}
         </Typography>
       </Box>
       <Box sx={{
@@ -67,8 +70,8 @@ export function MailMessageListHeader() {
         },
       }}
       >
-        <Typography variant="subtitle2" textAlign={['right']}>
-          VIEW
+        <Typography variant="subtitle2" textAlign={['right']} textTransform="uppercase">
+          {t('view')}
         </Typography>
       </Box>
     </Grid>

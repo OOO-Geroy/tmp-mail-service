@@ -3,6 +3,7 @@ import {
   ListItem, Grid, Typography, IconButton, Box, useTheme,
 } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { MailMessageAddress } from 'shared';
 
@@ -14,6 +15,7 @@ export interface MailMessageRowProps {
 
 export function MailMessageListRow({ seq, sender, subject = '' }: MailMessageRowProps) {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <ListItem sx={{
@@ -75,7 +77,7 @@ export function MailMessageListRow({ seq, sender, subject = '' }: MailMessageRow
         >
           <Typography textAlign={['right']}>
             <Link to={`/${seq}`}>
-              <IconButton aria-label="fingerprint" color="primary" size="small">
+              <IconButton aria-label={t('Go to message detail')} color="primary" size="small">
                 <KeyboardArrowRight fontSize="small" />
               </IconButton>
             </Link>

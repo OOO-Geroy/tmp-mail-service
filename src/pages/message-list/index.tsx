@@ -13,8 +13,10 @@ import {
 } from '@mui/material';
 import { MailRenew } from 'features/mail-renew';
 import { UpdateMessageList } from 'features/update-message-list';
+import { useTranslation } from 'react-i18next';
 
 export const MessageListPage = observer(() => {
+  const { t } = useTranslation();
   const messagesStore = useMailMessagesStore();
   return (
     <Container maxWidth="sm">
@@ -59,7 +61,7 @@ export const MessageListPage = observer(() => {
                 </Grid>
                 <Grid item>
                   <Typography variant="h5" sx={{ color: 'grey.700' }}>
-                    Your mailbox is empty
+                    {t('Your mailbox is empty')}
                   </Typography>
                 </Grid>
 

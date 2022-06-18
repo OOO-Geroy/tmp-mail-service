@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../configs';
+import { theme } from 'shared';
 
 interface WithThemeProps {
   children: React.ReactNode
