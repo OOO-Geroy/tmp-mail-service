@@ -3307,7 +3307,7 @@ packages:
       resolve: 1.22.0
     dev: false
 
-  /babel-plugin-named-asset-import/0.3.8_@babel+core@7.18.2:
+  /babel-tmp-maild-asset-import/0.3.8_@babel+core@7.18.2:
     resolution: {integrity: sha512-WXiAc++qo7XcJ1ZnTYGtLxmBCVbddAml3CEXgWaBzNzLNoxtQ8AiGEFDMOhot9XjTCQbvP5E77Fj9Gk924f00Q==}
     peerDependencies:
       '@babel/core': ^7.1.0
@@ -8169,7 +8169,7 @@ packages:
       '@svgr/webpack': 5.5.0
       babel-jest: 27.5.1_@babel+core@7.18.2
       babel-loader: 8.2.5_1e6208c184491b2ebbab8f4236ed439d
-      babel-plugin-named-asset-import: 0.3.8_@babel+core@7.18.2
+      babel-tmp-maild-asset-import: 0.3.8_@babel+core@7.18.2
       babel-preset-react-app: 10.0.1
       bfj: 7.0.2
       browserslist: 4.20.4
