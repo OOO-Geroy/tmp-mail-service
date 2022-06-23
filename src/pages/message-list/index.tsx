@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 export const MessageListPage = observer(() => {
   const { t } = useTranslation();
   const messagesStore = useMailMessagesStore();
+
   return (
     <Container maxWidth="sm">
       <Box sx={{ mb: 1 }}>
@@ -33,7 +34,7 @@ export const MessageListPage = observer(() => {
         >
           {
           messagesStore.messages.length
-            ? messagesStore.messages.map((msg) => (
+            ? messagesStore.reverseMessages.map((msg) => (
               <React.Fragment key={msg.seq}>
                 <MailMessageListRow
                   seq={msg.seq}

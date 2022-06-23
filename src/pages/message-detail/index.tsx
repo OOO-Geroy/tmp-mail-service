@@ -4,7 +4,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { observer } from 'mobx-react';
 import { Link, useParams } from 'react-router-dom';
 import { MailMessageCard, useMailMessagesStore } from 'entities/mail-message';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { Button, Container } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { MailMessageCardHeader } from 'entities/mail-message/ui/card-header';
@@ -16,9 +16,9 @@ export const MessageDetailPage = observer(() => {
   const mailMessagesStore = useMailMessagesStore();
   const message = mailMessagesStore.messages.find((msg) => msg.seq === +seq);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (message && typeof message.text === 'undefined') { mailMessagesStore.loadDetail(+seq); }
-  }, [message]);
+  }, [message, seq]);
 
   return (
     <Container maxWidth="md">

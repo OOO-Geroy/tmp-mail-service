@@ -19,6 +19,10 @@ export class MailMessagesStore {
     makeAutoObservable(this);
   }
 
+  get reverseMessages() {
+    return this.messages.slice().reverse();
+  }
+
   /**
    *
    */

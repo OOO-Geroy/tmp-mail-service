@@ -7,7 +7,6 @@ interface WithRouterProps {
 }
 
 export function WithRouter({ children }: WithRouterProps) {
-  console.log(BASENAME);
   return (
     <BrowserRouter basename={BASENAME}>
       {children}
