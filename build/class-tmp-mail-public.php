@@ -66,11 +66,12 @@ class Tmp_Mail_Public
 		foreach (glob(TMP_MAIL_FOLDER . '/build/static/css/*.css') as $file) {
 			$ind++;
 			$filename = substr($file, strrpos($file, '/') + 1);
-			wp_register_style($this->tmp_mail . '_' . $ind,  TMP_MAIL_URL . 'build/static/css/' . $filename, [],  $this->version, true);
+			wp_register_style($this->tmp_mail . '_' . $ind,  TMP_MAIL_URL . 'build/static/css/' . $filename, [],  $this->version);
 		}
+		wp_register_style('roboto', 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap', [],  $this->version);
 	}
 
-		/**
+	/**
 	 * Enqueue the stylesheets for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
@@ -82,6 +83,7 @@ class Tmp_Mail_Public
 			$ind++;
 			wp_enqueue_style($this->tmp_mail . '_' . $ind);
 		}
+		wp_enqueue_style('roboto');
 	}
 
 	/**
@@ -110,6 +112,25 @@ class Tmp_Mail_Public
 		foreach (glob(TMP_MAIL_FOLDER . '/build/static/js/*.js') as $file) {
 			$ind++;
 			wp_enqueue_script($this->tmp_mail . '_' . $ind);
+		}
+	}
+
+	/**
+	 * Inline script for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function inline_scripts()
+	{
+		$ind = 0;
+		foreach (glob(TMP_MAIL_FOLDER . '/build/static/js/*.js') as $file) {
+			$ind++;
+			wp_add_inline_script($this->tmp_mail . '_' . $ind, '
+			const ROUTER_BASENAME = "/";
+			const ROUTER_TYPE = "memory";
+			const API_DOMAIN = "ipreview.tech";
+			', 'before');
+			return;
 		}
 	}
 }

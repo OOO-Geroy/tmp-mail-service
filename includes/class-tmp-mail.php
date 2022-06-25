@@ -180,6 +180,7 @@ class Tmp_Mail
 
 		$this->loader->add_action('init', $plugin_public, 'register_styles');
 		$this->loader->add_action('init', $plugin_public, 'register_scripts');
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'inline_scripts');
 	}
 
 	public function define_public_shortcodes()

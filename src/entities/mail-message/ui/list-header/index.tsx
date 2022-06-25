@@ -20,7 +20,7 @@ export function MailMessageListHeader() {
         color: 'primary.contrastText',
         width: '100%',
         margin: '0',
-        borderRadius: `${theme.spacing(1)}  ${theme.spacing(1)} 0px 0px`,
+        borderRadius: `${theme.spacing(0.5)}  ${theme.spacing(0.5)} 0px 0px`,
         [theme.breakpoints.down('sm')]: {
           gridTemplateColumns: '1fr',
         },
