@@ -123,12 +123,14 @@ class Tmp_Mail_Public
 	public function inline_scripts()
 	{
 		$ind = 0;
+		$options = get_option('tms_settings');
+
 		foreach (glob(TMP_MAIL_FOLDER . '/build/static/js/*.js') as $file) {
 			$ind++;
 			wp_add_inline_script($this->tmp_mail . '_' . $ind, '
-			const ROUTER_BASENAME = "/";
-			const ROUTER_TYPE = "memory";
-			const API_DOMAIN = "ipreview.tech";
+			const TMS_ROUTER_BASENAME = "/";
+			const TMS_ROUTER_TYPE = "memory";
+			const TMS_API_DOMAIN = "'. (isset($options['tms_api_domain_field'])? $options['tms_api_domain_field'] : '') .'";
 			', 'before');
 			return;
 		}

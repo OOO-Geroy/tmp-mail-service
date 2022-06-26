@@ -126,6 +126,11 @@ class Tmp_Mail
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-tmp-mail-admin.php';
 
 		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-tmp-mail-admin.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -164,6 +169,9 @@ class Tmp_Mail
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+
+		$this->loader->add_action('admin_menu', $plugin_admin, 'add_menu_pages');
+		$this->loader->add_action('admin_init', $plugin_admin, 'settings_init');
 	}
 
 	/**

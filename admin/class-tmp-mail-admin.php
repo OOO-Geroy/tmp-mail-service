@@ -20,7 +20,8 @@
  * @subpackage Tmp_Mail/admin
  * @author     Your Name <email@example.com>
  */
-class Tmp_Mail_Admin {
+class Tmp_Mail_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,11 @@ class Tmp_Mail_Admin {
 	 * @param      string    $tmp_mail       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $tmp_mail, $version ) {
+	public function __construct($tmp_mail, $version)
+	{
 
 		$this->tmp_mail = $tmp_mail;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,7 +60,8 @@ class Tmp_Mail_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,8 +75,7 @@ class Tmp_Mail_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->tmp_mail, plugin_dir_url( __FILE__ ) . 'css/tmp-mail-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->tmp_mail, plugin_dir_url(__FILE__) . 'css/tmp-mail-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,7 +83,8 @@ class Tmp_Mail_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -96,8 +98,81 @@ class Tmp_Mail_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->tmp_mail, plugin_dir_url( __FILE__ ) . 'js/tmp-mail-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script($this->tmp_mail, plugin_dir_url(__FILE__) . 'js/tmp-mail-admin.js', array('jquery'), $this->version, false);
+	}
+
+
+	function add_menu_pages()
+	{
+		add_menu_page('Temp Mail Service', 'Temp Mail Service', 'manage_options', 'temp-mail', [$this, 'add_info_page'], '', 4);
+		add_submenu_page('temp-mail', 'API Settings', 'Settings', 'manage_options', 'temp-mail-settings', [$this, 'tms_option_page']);
+	}
+
+	function tms_option_page()
+	{
+
+?>
+		<form action='options.php' method='post'>
+
+			<h1>Temp Mail Service</h1>
+
+			<?php
+			settings_fields('tms_plugin');
+			do_settings_sections('tms_plugin');
+			submit_button();
+			?>
+
+		</form>
+	<?php
 
 	}
 
+	function settings_init()
+	{
+
+		register_setting('tms_plugin', 'tms_settings');
+
+		add_settings_section(
+			'tms_plugin_section',
+			__('Settings', 'tmp-mail-service'),
+			[$this, 'tms_settings_section_callback'],
+			'tms_plugin'
+		);
+
+		add_settings_field(
+			'tms_api_domain_field',
+			__('API Domain', 'tmp-mail-service'),
+			[$this, 'tms_api_domain_field_render'],
+			'tms_plugin',
+			'tms_plugin_section'
+		);
+	}
+
+	function tms_api_domain_field_render()
+	{
+
+		$options = get_option('tms_settings');
+	?>
+		<input type='text' name='tms_settings[tms_api_domain_field]' placeholder="example.com" value='<?= isset($options['tms_api_domain_field'])? $options['tms_api_domain_field'] : ''; ?>'>
+	<?php
+
+	}
+	function tms_settings_section_callback()
+	{
+
+		echo __('', 'tmp-mail-service');
+	}
+
+
+	function add_info_page()
+	{
+	?>
+		<div class="wrap">
+			<h2><?php echo get_admin_page_title() ?></h2>
+			<h3>Shortcodes:</h3>
+			<p><strong>[tmp_mail]</strong> - Add this shortcode to any page to show temporary mail interface.</p>
+		</div>
+<?php
+
+	}
 }
