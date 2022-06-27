@@ -20,7 +20,7 @@ function LinearProgressWithLabel({ value, label }: { value: number, label: strin
         />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="inherit">
+        <Typography variant="body2" color="inherit" whiteSpace="nowrap">
           {label}
         </Typography>
       </Box>
