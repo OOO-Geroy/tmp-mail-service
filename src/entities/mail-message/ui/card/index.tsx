@@ -15,7 +15,7 @@ export function MailMessageCard({ message, header }: MailMessageCardProps) {
   }), [message, message.html]);
 
   return (
-    <Paper elevation={2}>
+    <Paper elevation={2} sx={{ borderRadius: 0 }}>
       {header}
       <Divider />
       <CardContent>

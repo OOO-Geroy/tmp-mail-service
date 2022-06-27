@@ -11,7 +11,7 @@ interface MailMessageCardProps {
 
 export function MailMessageList({ children, pending = false, header }: MailMessageCardProps) {
   return (
-    <Paper elevation={2}>
+    <Paper elevation={2} sx={{ borderRadius: 0 }}>
       {header}
       <LinearProgress sx={{ color: pending ? 'grey.600' : 'transparent' }} color="inherit" />
       <List
