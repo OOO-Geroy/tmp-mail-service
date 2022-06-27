@@ -169,8 +169,8 @@ class Tmp_Mail_Admin
 	?>
 		<div class="wrap">
 			<h2><?php echo get_admin_page_title() ?></h2>
-			<h3>Shortcodes:</h3>
-			<p><strong>[tmp_mail]</strong> - Add this shortcode to any page to show temporary mail interface.</p>
+			<h3><?= __('Shortcodes', 'tmp-mail-service') ?>:</h3>
+			<p><strong>[tmp_mail]</strong> - <?= __('Add this shortcode to any page to show temporary mail interface.', 'tmp-mail-service') ?></p>
 		</div>
 <?php
 
