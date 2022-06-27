@@ -8,12 +8,11 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link               https://github.com/OOO-Geroy/tmp-mail-service
+ * @link              https://github.com/OOO-Geroy/tmp-mail-service
  * @since             1.0.0
- * @package           Tmp_Mail_Service
+ * @package           tmp-mail-service
  *
- * @wordpress-plugin
- * Tmp Mail:          Temporary Mail Service
+ * Plugin Name:          Temporary Mail Service
  * Plugin URI:        https://github.com/OOO-Geroy/tmp-mail-service
  * Description:       The plugin provides an interface for creating temporary mail.
  * Version:           1.0.0
@@ -22,7 +21,8 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       tmp-mail-service
- * Domain Path:       /languages
+ * Domain Path:       /languages/
+ * Requires PHP: 5.3.6
  */
 
 // If this file is called directly, abort.

@@ -104,7 +104,7 @@ class Tmp_Mail_Admin
 
 	function add_menu_pages()
 	{
-		add_menu_page('Temp Mail Service', 'Temp Mail Service', 'manage_options', 'temp-mail', [$this, 'add_info_page'], '', 4);
+		add_menu_page('Temp Mail Service', 'Temp Mail Service', 'manage_options', 'temp-mail', [$this, 'add_info_page'], '', 50);
 		add_submenu_page('temp-mail', 'API Settings', 'Settings', 'manage_options', 'temp-mail-settings', [$this, 'tms_option_page']);
 	}
 
