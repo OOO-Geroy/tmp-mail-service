@@ -1,17 +1,16 @@
 /* eslint-disable no-param-reassign */
 import createCache from '@emotion/cache';
 import { createTheme } from '@mui/material/styles';
-import { mountElSelector } from '../consts';
+import { scopedClass, stylePrefixer } from '../consts';
 
 export const themeCache = createCache({
-  key: 'tms',
+  key: stylePrefixer,
   stylisPlugins: [
     // eslint-disable-next-line consistent-return
     (element) => {
       if (element.type === 'rule') {
         if (Array.isArray(element.props) && element.line === 1) {
-          element.props = element.props.map((v) => (v.includes('MuiTooltip') ? v : `${mountElSelector} ${v}`
-          ));
+          element.props = element.props.map((v) => `.${scopedClass}.${scopedClass}.${scopedClass} ${v}`);
         }
       }
     },
