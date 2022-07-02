@@ -31,7 +31,7 @@ class Tmp_Mail_Activator {
 	 */
 	public static function activate() {
 		$options = get_option('tms_settings');
-		if (!$options || !isset($options['tms_api_domain_field'])) {
+		if (!$options || !isset($options['tms_api_domain_field']) || !$options['tms_api_domain_field']) {
 			update_option('tms_settings', [
 				'tms_api_domain_field' => 'api-mts.vpntester.org'
 			]);
