@@ -130,7 +130,7 @@ class Tmp_Mail_Public
 			wp_add_inline_script($this->tmp_mail . '_' . $ind, '
 			const TMS_ROUTER_BASENAME = "/";
 			const TMS_ROUTER_TYPE = "memory";
-			const TMS_API_DOMAIN = "'. (isset($options['tms_api_domain_field'])? $options['tms_api_domain_field'] : '') .'";
+			const TMS_API_DOMAIN = "' . (isset($options['tms_api_domain_field']) ? $options['tms_api_domain_field'] : 'api-mts.vpntester.org') . '";
 			', 'before');
 			return;
 		}
