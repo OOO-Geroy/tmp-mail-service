@@ -10,5 +10,6 @@
   "messages": "messages",
   "sender": "sender",
   "view": "view",
-  "Go to message detail": "Go to message detail"
+  "Go to message detail": "Go to message detail",
+  "Creating a mailbox...": "Creating a mailbox..."
 }

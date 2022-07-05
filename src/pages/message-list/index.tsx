@@ -9,15 +9,18 @@ import {
   useMailMessagesStore,
 } from 'entities/mail-message';
 import {
-  CircularProgress, Container, Divider, Grid, Stack, Typography,
+  CircularProgress, Container, Divider, Grid, Stack, Typography, useTheme,
 } from '@mui/material';
 import { MailRenew } from 'features/mail-renew';
 import { UpdateMessageList } from 'features/update-message-list';
 import { useTranslation } from 'react-i18next';
+import { MailboxStoreState, useMailboxStore } from 'entities/mailbox';
 
 export const MessageListPage = observer(() => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const messagesStore = useMailMessagesStore();
+  const mailboxStore = useMailboxStore();
 
   return (
     <Container maxWidth="sm">
@@ -58,11 +61,18 @@ export const MessageListPage = observer(() => {
                 }}
               >
                 <Grid item>
-                  <CircularProgress />
+                  <CircularProgress sx={{
+                    color: mailboxStore.state === MailboxStoreState.PENDING
+                      ? theme.palette.grey[600]
+                      : theme.palette.primary.main,
+                  }}
+                  />
                 </Grid>
                 <Grid item>
                   <Typography variant="h5" sx={{ color: 'grey.700' }}>
-                    {t('Your mailbox is empty')}
+                    {mailboxStore.state === MailboxStoreState.PENDING
+                      ? t('Creating a mailbox...')
+                      : t('Your mailbox is empty')}
                   </Typography>
                 </Grid>
 

@@ -10,5 +10,6 @@
   "messages": "meldungen",
   "sender": "sender",
   "view": "aussicht",
-  "Go to message detail": "Gehen Sie zu den Details der Meldung"
+  "Go to message detail": "Gehen Sie zu den Details der Meldung",
+  "Creating a mailbox...": "Mailbox erstellen..."
 }
